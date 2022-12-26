@@ -33,44 +33,29 @@ const ListMessagesService = async ({
   }
 
   // await setMessagesAsRead(ticket);
-  const limit = 20;
-  const offset = limit * (+pageNumber - 1);
+ const limit = 20;
+const offset = limit * (+pageNumber - 1);
 
-  const options: FindOptions = {
-    where: {
-      ticketId,
-      companyId
+const { count, rows: messages } = await Message.findAndCountAll({
+  //where: { ticketId },
+  //where: {contactid : ticket.contactId},
+  limit,
+  include: [
+    "contact",
+    {
+      model: Message,
+      as: "quotedMsg",
+      include: ["contact"]
+    },
+    {
+      model: Ticket,
+      where: {contactId: ticket.contactId  },
+      required: true
     }
-  };
-
-  if (queues.length > 0) {
-    options.where["queueId"] = {
-      [Op.or]: {
-        [Op.in]: queues,
-        [Op.eq]: null
-      }
-    };
-  }
-
-  const { count, rows: messages } = await Message.findAndCountAll({
-    ...options,
-    limit,
-    include: [
-      "contact",
-      {
-        model: Message,
-        as: "quotedMsg",
-        include: ["contact"]
-      },
-      {
-        model: Queue,
-        as: "queue"
-      }
-    ],
-    offset,
-    order: [["createdAt", "DESC"]]
-  });
-
+  ],
+  offset,
+  order: [["createdAt", "DESC"]]
+});
   const hasMore = count > offset + messages.length;
 
   return {
