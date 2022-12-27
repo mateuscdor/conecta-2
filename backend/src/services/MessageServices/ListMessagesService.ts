@@ -1,16 +1,12 @@
-import { FindOptions } from "sequelize/types";
-import { Op } from "sequelize";
 import AppError from "../../errors/AppError";
 import Message from "../../models/Message";
 import Ticket from "../../models/Ticket";
 import ShowTicketService from "../TicketServices/ShowTicketService";
-import Queue from "../../models/Queue";
+import { SendAckBYticketId } from "../WbotServices/SendAck"
 
 interface Request {
   ticketId: string;
-  companyId: number;
   pageNumber?: string;
-  queues?: number[];
 }
 
 interface Response {
@@ -22,40 +18,40 @@ interface Response {
 
 const ListMessagesService = async ({
   pageNumber = "1",
-  ticketId,
-  companyId,
-  queues = []
+  ticketId
 }: Request): Promise<Response> => {
-  const ticket = await ShowTicketService(ticketId, companyId);
+  const ticket = await ShowTicketService(ticketId);
 
   if (!ticket) {
     throw new AppError("ERR_NO_TICKET_FOUND", 404);
   }
 
   // await setMessagesAsRead(ticket);
- const limit = 20;
-const offset = limit * (+pageNumber - 1);
+  const limit = 20;
+  const offset = limit * (+pageNumber - 1);
 
-const { count, rows: messages } = await Message.findAndCountAll({
-  //where: { ticketId },
-  //where: {contactid : ticket.contactId},
-  limit,
-  include: [
-    "contact",
-    {
-      model: Message,
-      as: "quotedMsg",
-      include: ["contact"]
-    },
-    {
-      model: Ticket,
-      where: {contactId: ticket.contactId  },
-      required: true
-    }
-  ],
-  offset,
-  order: [["createdAt", "DESC"]]
-});
+  const { count, rows: messages } = await Message.findAndCountAll({
+
+    limit,
+    include: [
+      "contact",
+      {
+        model: Message,
+        as: "quotedMsg",
+        include: ["contact"]
+      },
+      {
+        model: Ticket,
+        where: { contactId: ticket.contactId },
+        required: true
+      }
+    ],
+    offset,
+    order: [["createdAt", "DESC"]]
+  });
+
+  await SendAckBYticketId({ ticketId })
+
   const hasMore = count > offset + messages.length;
 
   return {
