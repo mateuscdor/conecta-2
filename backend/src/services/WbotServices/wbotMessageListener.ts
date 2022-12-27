@@ -85,10 +85,10 @@ export const getBodyMessage = (msg: proto.IWebMessageInfo): string | null => {
 export const getQuotedMessage = (msg: proto.IWebMessageInfo): any => {
   const body =
     msg.message.imageMessage.contextInfo ||
-   msg.message.videoMessage.contextInfo ||
+    msg.message.videoMessage.contextInfo ||
     msg.message.extendedTextMessage.contextInfo ||
     msg.message.buttonsResponseMessage.contextInfo ||
-   msg.message.listResponseMessage.contextInfo ||
+    msg.message.listResponseMessage.contextInfo ||
     msg.message.templateButtonReplyMessage.contextInfo ||
     msg.message.buttonsResponseMessage?.contextInfo ||
     msg.message.listResponseMessage?.contextInfo;
@@ -431,7 +431,8 @@ const verifyQueue = async (
   const choosenQueue = queues[+selectedOption - 1];
 
   if (choosenQueue) {
-    let chatbot = false;
+    //let chatbot = false;
+    let chatbot = true;
     if (choosenQueue?.options) {
       chatbot = choosenQueue.options.length > 0;
     }
