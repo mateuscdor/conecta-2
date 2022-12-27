@@ -82,16 +82,16 @@ export const getBodyMessage = (msg: proto.IWebMessageInfo): string | null => {
   );
 };
 
-//export const getQuotedMessage = (msg: proto.IWebMessageInfo): any => {
-  //const body =
-   // msg.message.imageMessage.contextInfo ||
-    //msg.message.videoMessage.contextInfo ||
-   // msg.message.extendedTextMessage.contextInfo ||
-   // msg.message.buttonsResponseMessage.contextInfo ||
-   // msg.message.listResponseMessage.contextInfo ||
-  //  msg.message.templateButtonReplyMessage.contextInfo ||
-   // msg.message.buttonsResponseMessage?.contextInfo ||
-  //  msg.message.listResponseMessage?.contextInfo;
+export const getQuotedMessage = (msg: proto.IWebMessageInfo): any => {
+  const body =
+    msg.message.imageMessage.contextInfo ||
+   msg.message.videoMessage.contextInfo ||
+    msg.message.extendedTextMessage.contextInfo ||
+    msg.message.buttonsResponseMessage.contextInfo ||
+   msg.message.listResponseMessage.contextInfo ||
+    msg.message.templateButtonReplyMessage.contextInfo ||
+    msg.message.buttonsResponseMessage?.contextInfo ||
+    msg.message.listResponseMessage?.contextInfo;
   // testar isso
 
   return extractMessageContent(body[Object.keys(body).values().next().value]);
