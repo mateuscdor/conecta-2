@@ -413,7 +413,7 @@ const verifyQueue = async (
     const firstQueue = head(queues);
     let chatbot = false;
     if (firstQueue?.options) {
-      chatbot = firstQueue.options.length > 0;
+      chatbot = firstQueue.options.length > 3;
     }
     await UpdateTicketService({
       ticketData: { queueId: firstQueue?.id, chatbot },
