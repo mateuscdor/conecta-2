@@ -655,9 +655,9 @@ const handleChartbot = async (
       ]
     });
 
-    if (queue.greetingMessage) {
-      body = `${queue.greetingMessage}\n\n`;
-    }
+    //if (queue.greetingMessage) {
+     // body = `${queue.greetingMessage}\n\n`;
+    //}
 
     queueOptions.forEach((option, i) => {
       if (queueOptions.length - 1 > i) {
