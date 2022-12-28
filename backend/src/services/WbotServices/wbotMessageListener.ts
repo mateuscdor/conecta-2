@@ -622,7 +622,7 @@ const handleChartbot = async (
     } else {
       option = await QueueOption.findOne({
         where: {
-          option: messageBody || "",
+          option: messageBody || "ola olaAAAAAAAAAAAAAA",
           parentId: ticket.queueOptionId
         }
       });
@@ -655,9 +655,9 @@ const handleChartbot = async (
       ]
     });
 
-    //if (queue.greetingMessage) {
-     // body = `${queue.greetingMessage}\n\n`;
-    //}
+    if (queue.greetingMessage) {
+      body = `${queue.greetingMessage}\n\n`;
+    }
 
     queueOptions.forEach((option, i) => {
       if (queueOptions.length - 1 > i) {
