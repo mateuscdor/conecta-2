@@ -453,7 +453,7 @@ const verifyQueue = async (
       await verifyMessage(sentMessage, ticket);
     }
   } else {
-    let options = "";
+    let options = 1;
 
     queues.forEach((queue, index) => {
       options += `*${index + 1}* - ${queue.name}\n`;
@@ -622,7 +622,7 @@ const handleChartbot = async (
     } else {
       option = await QueueOption.findOne({
         where: {
-          option: messageBody || "ola olaAAAAAAAAAAAAAA",
+          option: messageBody || "A",
           parentId: ticket.queueOptionId
         }
       });
