@@ -636,11 +636,11 @@ const handleChartbot = async (
     !dontReadTheFirstQuestion
   ) {
     // não linha a primeira pergunta
-    const option = queue?.options.find(o => o.option == messageBody);
-    if (option) {
-      await ticket.update({ queueOptionId: option?.id });
-    }
-  }
+    //const option = queue?.options.find(o => o.option == messageBody);
+   // if (option) {
+     // await ticket.update({ queueOptionId: option?.id });
+   // }
+//  }
 
   await ticket.reload();
 
@@ -661,7 +661,7 @@ const handleChartbot = async (
 
     queueOptions.forEach((option, i) => {
       if (queueOptions.length - 1 > i) {
-        options += `*yesyadsasdasdas* - ${option.title}\n`;
+        options += `*${option.option}* - ${option.title}\n`;
       } else {
         options += `*${option.option}* - ${option.title}`;
       }
