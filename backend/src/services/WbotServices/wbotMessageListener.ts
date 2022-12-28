@@ -424,7 +424,7 @@ const verifyQueue = async (
     return;
   }
 
-  const selectedOption =
+  const selectedOption = "selecione uma opçãoooooooooooo"
     msg.message?.conversation ||
     (msg.message?.extendedTextMessage?.text as string);
 
@@ -453,8 +453,8 @@ const verifyQueue = async (
       await verifyMessage(sentMessage, ticket);
     }
   } else {
-    let options = 1;
-
+    let options = "";
+//acima as opções
     queues.forEach((queue, index) => {
       options += `*${index + 1}* - ${queue.name}\n`;
     });
