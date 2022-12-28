@@ -409,7 +409,7 @@ const verifyQueue = async (
     ticket.companyId
   );
 
-  if (queues.length === 1) {
+  if (queues.length === 0) {
     const firstQueue = head(queues);
     let chatbot = false;
     if (firstQueue?.options) {
@@ -424,7 +424,7 @@ const verifyQueue = async (
     return;
   }
 
-  const selectedOption = "selecione uma opçãoooooooooooo"
+  const selectedOption =
     msg.message?.conversation ||
     (msg.message?.extendedTextMessage?.text as string);
 
