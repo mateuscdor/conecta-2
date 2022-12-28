@@ -413,7 +413,7 @@ const verifyQueue = async (
     const firstQueue = head(queues);
     let chatbot = false;
     if (firstQueue?.options) {
-      chatbot = firstQueue.options.length > 3;
+      chatbot = firstQueue.options.length > 0;
     }
     await UpdateTicketService({
       ticketData: { queueId: firstQueue?.id, chatbot },
@@ -431,8 +431,7 @@ const verifyQueue = async (
   const choosenQueue = queues[+selectedOption - 1];
 
   if (choosenQueue) {
-    //let chatbot = false;
-    let chatbot = true;
+    let chatbot = false;
     if (choosenQueue?.options) {
       chatbot = choosenQueue.options.length > 0;
     }
@@ -662,7 +661,7 @@ const handleChartbot = async (
 
     queueOptions.forEach((option, i) => {
       if (queueOptions.length - 1 > i) {
-        options += `*${option.option}* - ${option.title}\n`;
+        options += `*yesyadsasdasdas* - ${option.title}\n`;
       } else {
         options += `*${option.option}* - ${option.title}`;
       }
