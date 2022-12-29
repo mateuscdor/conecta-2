@@ -82,6 +82,18 @@ export const getBodyMessage = (msg: proto.IWebMessageInfo): string | null => {
   );
 };
 
+export const getQuotedMessage = (msg: proto.IWebMessageInfo): any => {
+  const body =
+    msg.message.imageMessage.contextInfo ||
+    msg.message.videoMessage.contextInfo ||
+    msg.message.extendedTextMessage.contextInfo ||
+    msg.message.buttonsResponseMessage.contextInfo ||
+    msg.message.listResponseMessage.contextInfo ||
+    msg.message.templateButtonReplyMessage.contextInfo ||
+    msg.message.buttonsResponseMessage?.contextInfo ||
+    msg.message.listResponseMessage?.contextInfo;
+  // testar isso
+
   return extractMessageContent(body[Object.keys(body).values().next().value]);
 };
 
@@ -442,7 +454,7 @@ const verifyQueue = async (
     }
   } else {
     let options = "";
-//acima as opções
+
     queues.forEach((queue, index) => {
       options += `*${index + 1}* - ${queue.name}\n`;
     });
@@ -610,7 +622,7 @@ const handleChartbot = async (
     } else {
       option = await QueueOption.findOne({
         where: {
-          option: messageBody || "A",
+          option: messageBody || "",
           parentId: ticket.queueOptionId
         }
       });
