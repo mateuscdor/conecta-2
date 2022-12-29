@@ -662,9 +662,7 @@ const handleChartbot = async (
     queueOptions.forEach((option, i) => {
       if (queueOptions.length - 1 > i) {
         options += `*${option.option}* - ${option.title}\n`;
-      } else {
-        options += `*${option.option}* - ${option.title}`;
-      }
+      } 
     });
 
     if (options !== "") {
