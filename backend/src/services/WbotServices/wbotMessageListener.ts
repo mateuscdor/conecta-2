@@ -87,7 +87,7 @@ export const getQuotedMessage = (msg: proto.IWebMessageInfo): any => {
     msg.message.imageMessage.contextInfo ||
     msg.message.videoMessage.contextInfo ||
     msg.message.extendedTextMessage.contextInfo ||
-    msg.message.buttonsResponseMessage.contextInfo ||
+    //msg.message.buttonsResponseMessage.contextInfo ||
     msg.message.listResponseMessage.contextInfo ||
     msg.message.templateButtonReplyMessage.contextInfo ||
     msg.message.buttonsResponseMessage?.contextInfo ||
@@ -409,7 +409,7 @@ const verifyQueue = async (
     ticket.companyId
   );
 
-  if (queues.length === 0) {
+  if (queues.length === 1) {
     const firstQueue = head(queues);
     let chatbot = false;
     if (firstQueue?.options) {
