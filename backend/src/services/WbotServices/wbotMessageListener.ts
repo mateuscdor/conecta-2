@@ -989,8 +989,8 @@ const handleMessage = async (
     }
 
     if (isNull(ticket.queueId) && ticket.status !== "open" && !msg.key.fromMe) {
-      const greetingMessage = whatsapp.greetingMessage || "";
-      if (greetingMessage !== "") {
+      const greetingMessage = whatsapp.greetingMessage || "vey1";
+      if (greetingMessage !== "vey") {
         await wbot.sendMessage(
           `${ticket.contact.number}@${
             ticket.isGroup ? "g.us" : "s.whatsapp.net"
