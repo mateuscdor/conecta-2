@@ -424,8 +424,8 @@ const verifyQueue = async (
     return;
   }
 
-  const selectedOption =
-    "*0* Selecione uma opção*\n" ||
+ const selectedOption =
+    msg.message?.conversation ||
     (msg.message?.extendedTextMessage?.text as string);
 
   const choosenQueue = queues[+selectedOption - 1];
@@ -636,7 +636,7 @@ const handleChartbot = async (
     !dontReadTheFirstQuestion
   ) {
     // não linha a primeira pergunta
-    const option = queue?.options.find(o => o.option == messageBody);
+    const option = queue?.options.find(o => o.option == "\n\n*00* - *yes*");
     if (option) {
       await ticket.update({ queueOptionId: option?.id });
     }
