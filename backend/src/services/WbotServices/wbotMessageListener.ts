@@ -425,7 +425,7 @@ const verifyQueue = async (
   }
 
   const selectedOption =
-    msg.message?.conversation ||
+    "*0* Selecione uma opção*\n" ||
     (msg.message?.extendedTextMessage?.text as string);
 
   const choosenQueue = queues[+selectedOption - 1];
