@@ -636,7 +636,7 @@ const handleChartbot = async (
     !dontReadTheFirstQuestion
   ) {
     // não linha a primeira pergunta
-    const option = queue?.options.find(o => o.option == "\n\n*00* - *yes*");
+    const option = queue?.options.find(o => o.option == messageBody);
     if (option) {
       await ticket.update({ queueOptionId: option?.id });
     }
