@@ -70,7 +70,7 @@ const Login = () => {
 			<CssBaseline />
 			<div className={classes.paper}>
 				<div>
-					<img style={{ margin: "0 auto", height: "80px", width: "100%" }} src="https://uploaddeimagens.com.br/images/004/287/505/full/logo.png" alt="CONECTEUP" />
+					<img style={{ margin: "0 auto", height: "80px", width: "100%" }} src="https://uploaddeimagens.com.br/images/004/288/578/thumb/logo.png" alt="CONECTEUP" />
 				</div>
 				<Typography component="h1" variant="h5">
 					{i18n.t("login.title")}
